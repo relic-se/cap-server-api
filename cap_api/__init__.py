@@ -82,13 +82,22 @@ class Server:
 
     @property
     def about(self) -> dict:
+        """Get basic information from the server. Returns a dict with the keys "bun", "ver" and "demo"."""
         return self._get("/server/about")
 
     @property
     def keys(self) -> list:
+        """Get a list of all keys on the Cap server. See :func:`get_key` for data format."""
         return self._get("/server/keys")
 
     def add_key(self, name: str, instrumentation: bool = True, blockAutomatedBrowsers: bool = True, corsOrigins: list|None = None) -> dict:
+        """Create a new key. Returns a dict with the same keys as :func:`get_key` but also includes "secretKey".
+
+        :param name: The name of the key.
+        :param instrumentation: Whether or not you would like to enable instrumentation challenges.
+        :param blockAutomatedBrowsers: Whether or not to attempt to block headless browsers.
+        :param corsOrigins: Only these origins will be able to request challenges for this key.
+        """
         data = {
             "name": name,
             "instrumentation": instrumentation,
@@ -99,10 +108,22 @@ class Server:
         return self._post("/server/keys", data=data)
 
     def get_key(self, siteKey: str) -> dict:
+        """Get information about a specific key by its "siteKey" value. Returns a dict with the keys "siteKey", "name", "created", "solvesLast24h" and "difference".
+
+        :param siteKey: The site key of the key.
+        """
         return self._get("/server/keys/{}".format(siteKey))
     
     def delete_key(self, siteKey: str) -> dict:
+        """Delete a key by its "siteKey" value.
+
+        :param siteKey: The site key of the key.
+        """
         return self._get("/server/keys/{}".format(siteKey), method="DELETE")
 
     def rotate_secret(self, siteKey: str) -> dict:
+        """Generate a new secret key for a key by its "siteKey" value. Returns a dict with the key "secretKey".
+        
+        :param siteKey: The site key of the key.
+        """
         return self._post("/server/keys/{}/rotate-secret".format(siteKey))
