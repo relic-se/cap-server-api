@@ -2,17 +2,18 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from setuptools import setup
 import os
+
+from setuptools import setup
 
 PACKAGE = "cap_api"
 
 info = {}
 dirpath = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(dirpath, PACKAGE, "__version__.py"), "r", encoding="utf-8") as f:
+with open(os.path.join(dirpath, PACKAGE, "__version__.py"), encoding="utf-8") as f:
     exec(f.read(), info)
 
-with open("README.md", "r", encoding="utf-8") as f:
+with open("README.md", encoding="utf-8") as f:
     readme = f.read()
 
 setup(
@@ -43,6 +44,6 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3 :: Only",
         "Topic :: Internet :: WWW/HTTP",
-        "Topic :: Software Development :: Libraries"
-    ]
+        "Topic :: Software Development :: Libraries",
+    ],
 )

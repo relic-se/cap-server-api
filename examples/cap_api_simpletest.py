@@ -2,8 +2,12 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from secrets import (
+    API_KEY,
+    INSTANCE,
+)
+
 from cap_api import Server
-from secrets import INSTANCE, API_KEY  # Provide instance host and API key for Cap server within secrets.py
 
 KEY_NAME = "simpletest"
 

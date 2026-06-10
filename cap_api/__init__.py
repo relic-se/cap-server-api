@@ -10,8 +10,9 @@ Python wrapper for Cap CAPTCHA server API
 * Author(s): Cooper Dalrymple
 """
 
-from http.client import HTTPSConnection
 import json
+from http.client import HTTPSConnection
+
 
 class Server:
     """Establish server API connection to Cap instance."""
@@ -24,7 +25,8 @@ class Server:
         """Create the server API connection.
 
         :param instance: The domain of the Cap server.
-        :param api_key: The API key to connect to the server. Must be generated within Cap dashboard.
+        :param api_key: The API key to connect to the server. Must be generated within Cap
+            dashboard.
         """
         self._instance = instance
         self._api_key = api_key
@@ -36,7 +38,7 @@ class Server:
             timeout=10,
         )
 
-    def _get(self, path: str, method: str = "GET") -> dict|list:
+    def _get(self, path: str, method: str = "GET") -> dict | list:
         response = None
         conn = self._make_connection()
         try:
@@ -44,21 +46,21 @@ class Server:
                 method,
                 path,
                 headers={
-                    "Authorization": "Bot {}".format(self._api_key),
+                    "Authorization": f"Bot {self._api_key}",
                     "Accept": "application/json",
                 },
             )
             response = json.loads(conn.getresponse().read())
         except Exception as e:
-            print("Request failed: {}".format(e))
+            print(f"Request failed: {e}")
             raise e
         finally:
             conn.close()
         return response
 
-    def _post(self, path: str, data: dict|None = None) -> dict|list:
+    def _post(self, path: str, data: dict | None = None) -> dict | list:
         headers = {
-            "Authorization": "Bot {}".format(self._api_key),
+            "Authorization": f"Bot {self._api_key}",
             "Accept": "application/json",
         }
         if data is not None:
@@ -74,7 +76,7 @@ class Server:
             )
             response = json.loads(conn.getresponse().read())
         except Exception as e:
-            print("Request failed: {}".format(e))
+            print(f"Request failed: {e}")
             raise e
         finally:
             conn.close()
@@ -82,7 +84,9 @@ class Server:
 
     @property
     def about(self) -> dict:
-        """Get basic information from the server. Returns a dict with the keys "bun", "ver" and "demo"."""
+        """Get basic information from the server. Returns a dict with the keys "bun", "ver" and
+        "demo".
+        """
         return self._get("/server/about")
 
     @property
@@ -90,8 +94,15 @@ class Server:
         """Get a list of all keys on the Cap server. See :func:`get_key` for data format."""
         return self._get("/server/keys")
 
-    def add_key(self, name: str, instrumentation: bool = True, blockAutomatedBrowsers: bool = True, corsOrigins: list|None = None) -> dict:
-        """Create a new key. Returns a dict with the same keys as :func:`get_key` but also includes "secretKey".
+    def add_key(
+        self,
+        name: str,
+        instrumentation: bool = True,
+        blockAutomatedBrowsers: bool = True,
+        corsOrigins: list | None = None,
+    ) -> dict:
+        """Create a new key. Returns a dict with the same keys as :func:`get_key` but also includes
+        "secretKey".
 
         :param name: The name of the key.
         :param instrumentation: Whether or not you would like to enable instrumentation challenges.
@@ -108,22 +119,24 @@ class Server:
         return self._post("/server/keys", data=data)
 
     def get_key(self, siteKey: str) -> dict:
-        """Get information about a specific key by its "siteKey" value. Returns a dict with the keys "siteKey", "name", "created", "solvesLast24h" and "difference".
+        """Get information about a specific key by its "siteKey" value. Returns a dict with the keys
+        "siteKey", "name", "created", "solvesLast24h" and "difference".
 
         :param siteKey: The site key of the key.
         """
-        return self._get("/server/keys/{}".format(siteKey))
-    
+        return self._get(f"/server/keys/{siteKey}")
+
     def delete_key(self, siteKey: str) -> dict:
         """Delete a key by its "siteKey" value.
 
         :param siteKey: The site key of the key.
         """
-        return self._get("/server/keys/{}".format(siteKey), method="DELETE")
+        return self._get(f"/server/keys/{siteKey}", method="DELETE")
 
     def rotate_secret(self, siteKey: str) -> dict:
-        """Generate a new secret key for a key by its "siteKey" value. Returns a dict with the key "secretKey".
-        
+        """Generate a new secret key for a key by its "siteKey" value. Returns a dict with the key
+        "secretKey".
+
         :param siteKey: The site key of the key.
         """
-        return self._post("/server/keys/{}/rotate-secret".format(siteKey))
+        return self._post(f"/server/keys/{siteKey}/rotate-secret")
