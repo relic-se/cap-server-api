@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Cooper Dalrymple (@relic-se)
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+name: PyPI Release Actions
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  upload-release-assets:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+    - name: Install dependencies
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade build twine
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: ${{ secrets.pypi_username }}
+        TWINE_PASSWORD: ${{ secrets.pypi_password }}
+      shell: bash
+      run: |
+        find -type f -not -path "./.*" -not -path "./docs*" \( -name "*.py" -o -name "*.toml" \) -exec sed -i -e "s/0.0.0+auto.0/${{github.event.release.tag_name}}/" {} +
+        python -m build
+        twine upload dist/*

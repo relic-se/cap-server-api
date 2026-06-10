@@ -1,0 +1,37 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Cooper Dalrymple (@relic-se)
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+name: Build CI
+
+on: [pull_request, push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+    - name: Checkout Current Repo
+      uses: actions/checkout@v4
+    - name: Pip install Sphinx, pre-commit
+      shell: bash
+      run: |
+        pip install --force-reinstall Sphinx sphinx-rtd-theme pre-commit
+    - name: Pre-commit hooks
+      shell: bash
+      run: |
+        pre-commit run --all-files --show-diff-on-failur
+    - name: Build docs
+      working-directory: docs
+      shell: bash
+      run: sphinx-build -E -W -b html . _build/html
+    - name: Build Python package
+      shell: bash
+      run: |
+        pip install --upgrade build twine
+        find -type f -not -path "./.*" -not -path "./docs*" \( -name "*.py" -o -name "*.toml" \) -exec sed -i -e "s/0.0.0+auto.0/1.2.3/" {} +
+        python -m build
+        twine check dist/*

@@ -1,0 +1,55 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Cooper Dalrymple (@relic-se)
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+[build-system]
+requires = [
+    "setuptools",
+    "wheel",
+    "setuptools-scm",
+]
+
+[project]
+name = "cap-api"
+description = "Python wrapper for Cap CAPTCHA server API"
+version = "1.0.0"
+readme = "README.rst"
+authors = [
+    {name = "Cooper Dalrymple", email = "me@dcdalrymple.com"}
+]
+urls = {Homepage = "https://github.com/relic-se/cap-api"}
+keywords = [
+    "cap",
+    "captcha",
+    "api",
+    "server",
+    "wrapper",
+    "integration",
+]
+license = {text = "GPLv3"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries",
+]
+dynamic = ["dependencies", "optional-dependencies"]
+
+[tool.setuptools]
+packages = ["cap_api"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+optional-dependencies = {optional = {file = ["optional_requirements.txt"]}}
