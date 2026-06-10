@@ -27,7 +27,7 @@ setup(
     author_email="me@dcdalrymple.com",
     license=info["__license__"],
     packages=[PACKAGE],
-    python_requires=">=3.7",
+    python_requires=">=3.7, <4",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
