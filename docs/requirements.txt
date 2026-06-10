@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Cooper Dalrymple
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+sphinx
+sphinxcontrib-jquery
+sphinx-rtd-theme

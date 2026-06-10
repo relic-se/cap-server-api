@@ -1,2 +1,5 @@
 __pycache__
 secrets.py
+_build
+.DS_Store
+dist

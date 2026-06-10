@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Cooper Dalrymple (@relic-se)
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from setuptools import setup
 import os
 
