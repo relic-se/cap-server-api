@@ -13,7 +13,7 @@ dirpath = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(dirpath, PACKAGE, "__version__.py"), encoding="utf-8") as f:
     exec(f.read(), info)
 
-with open("README.md", encoding="utf-8") as f:
+with open("README.rst", encoding="utf-8") as f:
     readme = f.read()
 
 setup(
@@ -21,7 +21,7 @@ setup(
     version=info["__version__"],
     description="Python wrapper for Cap CAPTCHA server API",
     long_description=readme,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/plain",
     url="https://github.com/relic-se/cap-api",
     author=info["__author__"],
     author_email="me@dcdalrymple.com",
