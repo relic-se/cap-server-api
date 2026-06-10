@@ -10,12 +10,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Python 3.12
-      uses: actions/setup-python@v5
+    - name: Checkout Current Repo
+      uses: actions/checkout@v6
+    - name: Set up Python
+      uses: actions/setup-python@v6
       with:
         python-version: 3.12
-    - name: Checkout Current Repo
-      uses: actions/checkout@v4
     - name: Pip install Sphinx, pre-commit
       shell: bash
       run: |
