@@ -11,12 +11,12 @@ KEY_NAME = "simpletest"
 server = Server(INSTANCE, API_KEY)
 
 # Read server info (version, etc)
-print(server.about())
+print(server.about)
 
 # Create new key if not found or rotate secret of existing key
-key = next(iter(filter(lambda x: x["name"] == KEY_NAME, server.keys)))
-if key is not None:
+try:
+    key = next(iter(filter(lambda x: x["name"] == KEY_NAME, server.keys)))
     key["secretKey"] = server.rotate_secret(key["siteKey"])["secretKey"]
-else:
+except StopIteration:
     key = server.add_key(KEY_NAME)
 print(key)
