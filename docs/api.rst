@@ -1,5 +1,5 @@
 API Reference
 #############
 
-.. automodule:: cap_api
+.. automodule:: cap_server_api
     :members:

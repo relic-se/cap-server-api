@@ -6,7 +6,7 @@ import os
 
 from setuptools import setup
 
-PACKAGE = "cap_api"
+PACKAGE = "cap_server_api"
 
 info = {}
 dirpath = os.path.abspath(os.path.dirname(__file__))

@@ -7,3 +7,5 @@ secrets.py
 _build
 .DS_Store
 dist
+*.egg-info
+.ruff_cache

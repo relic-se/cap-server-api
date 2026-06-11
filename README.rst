@@ -42,7 +42,7 @@ Usage Example
 
 .. code-block:: python
 
-    from cap_api import Server
+    from cap_server_api import Server
     server = Server("[serverDomain]", "[apiKey]")
     print(server.about)
 

@@ -7,7 +7,7 @@ from secrets import (
     INSTANCE,
 )
 
-from cap_api import Server
+from cap_server_api import Server
 
 KEY_NAME = "simpletest"
 

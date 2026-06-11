@@ -48,7 +48,7 @@ classifiers = [
 dynamic = ["dependencies", "optional-dependencies"]
 
 [tool.setuptools]
-packages = ["cap_api"]
+packages = ["cap_server_api"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}

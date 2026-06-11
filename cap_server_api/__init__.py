@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 """
-`cap_api`
+`cap_server_api`
 ================================================================================
 
 Python wrapper for Cap CAPTCHA server API
