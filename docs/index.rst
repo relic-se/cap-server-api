@@ -23,7 +23,7 @@ Table of Contents
 .. toctree::
     :caption: Other Links
 
-    Download from GitHub <https://github.com/relic-se/cap-api/releases/latest>
+    Download from GitHub <https://github.com/relic-se/cap-server-api/releases/latest>
     Learn About Cap <https://trycap.dev>
 
 Indices and tables

@@ -22,7 +22,7 @@ setup(
     description="Python wrapper for Cap CAPTCHA server API",
     long_description=readme,
     long_description_content_type="text/plain",
-    url="https://github.com/relic-se/cap-api",
+    url="https://github.com/relic-se/cap-server-api",
     author=info["__author__"],
     author_email="me@dcdalrymple.com",
     license=info["__license__"],

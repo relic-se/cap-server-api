@@ -10,14 +10,14 @@ requires = [
 ]
 
 [project]
-name = "cap-api"
+name = "cap-server-api"
 description = "Python wrapper for Cap CAPTCHA server API"
 version = "1.0.0"
 readme = "README.rst"
 authors = [
     {name = "Cooper Dalrymple", email = "me@dcdalrymple.com"}
 ]
-urls = {Homepage = "https://github.com/relic-se/cap-api"}
+urls = {Homepage = "https://github.com/relic-se/cap-server-api"}
 keywords = [
     "cap",
     "captcha",
